@@ -1,5 +1,5 @@
-from PyQt4 import QtCore, QtGui, uic
-from PyQt4.QtCore import pyqtSignal, pyqtSlot
+from PySide2 import QtCore, QtGui
+from PySide2.QtCore import Signal, Slot
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageQt import ImageQt
 import core
@@ -9,7 +9,7 @@ import numpy
 
 class Worker(QtCore.QObject):
 
-  imageCreated = pyqtSignal(['QImage'])
+  imageCreated = Signal(['QImage'])
 
   def __init__(self, parent=None, queue=None):
     QtCore.QObject.__init__(self)
@@ -19,7 +19,7 @@ class Worker(QtCore.QObject):
     self.queue = queue
 
 
-  @pyqtSlot(str, str, QtGui.QFont, int, int, int, int, tuple, tuple)
+  @Slot(str, str, QtGui.QFont, int, int, int, int, tuple, tuple)
   def createPreviewImage(self, backgroundImage, titleText, titleFont, fontSize,\
                             alignment, xOffset, yOffset, textColor, visColor):
     # print('worker thread id: {}'.format(QtCore.QThread.currentThreadId()))
@@ -36,7 +36,7 @@ class Worker(QtCore.QObject):
     }
     self.queue.put(dic)
 
-  @pyqtSlot()
+  @Slot()
   def process(self):
     try:
       nextPreviewInformation = self.queue.get(block=False)

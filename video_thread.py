@@ -1,5 +1,5 @@
-from PyQt4 import QtCore, QtGui, uic
-from PyQt4.QtCore import pyqtSignal, pyqtSlot
+from PySide2 import QtCore, QtGui
+from PySide2.QtCore import Signal, Slot
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageQt import ImageQt
 import core
@@ -9,9 +9,9 @@ import sys
 
 class Worker(QtCore.QObject):
 
-  videoCreated = pyqtSignal()
-  progressBarUpdate = pyqtSignal(int)
-  progressBarSetText = pyqtSignal(str)
+  videoCreated = Signal()
+  progressBarUpdate = Signal(int)
+  progressBarSetText = Signal(str)
 
   def __init__(self, parent=None):
     QtCore.QObject.__init__(self)
@@ -19,7 +19,7 @@ class Worker(QtCore.QObject):
     self.core = core.Core()
 
 
-  @pyqtSlot(str, str, QtGui.QFont, int, int, int, int, tuple, tuple, str, str)
+  @Slot(str, str, QtGui.QFont, int, int, int, int, tuple, tuple, str, str)
   def createVideo(self, backgroundImage, titleText, titleFont, fontSize, alignment,\
                     xOffset, yOffset,  textColor, visColor, inputFile, outputFile):
     # print('worker thread id: {}'.format(QtCore.QThread.currentThreadId()))

@@ -1,6 +1,6 @@
 import sys, io, os
-from PyQt4 import QtCore, QtGui, uic
-from PyQt4.QtGui import QPainter, QColor
+from PySide2 import QtCore, QtGui
+from PySide2.QtGui import QPainter, QColor
 from os.path import expanduser
 import subprocess as sp
 import numpy
