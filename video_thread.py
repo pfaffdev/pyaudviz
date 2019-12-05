@@ -65,7 +65,6 @@ class Worker(QtCore.QObject):
        '-pix_fmt', 'rgb24',
        '-r', '30', # frames per second
        '-i', '-', # The input comes from a pipe
-       '-an',
        '-i', inputFile,
        '-acodec', acodec, # output audio codec
        '-b:a', "192k",
