@@ -243,7 +243,7 @@ class Main(QtCore.QObject):
     backgroundDir = self.settings.value("backgroundDir", expanduser("~"))
 
     fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self.window,
-       "Open Background Image", backgroundDir, "Image Files (*.jpg *.png);; Video Files (*.mp4)");
+       "Open Background Image", backgroundDir, "Image Files (*.jpg *.jpeg *.png);; Video Files (*.mp4)");
 
     if not fileName == "": 
       self.settings.setValue("backgroundDir", os.path.dirname(fileName))
